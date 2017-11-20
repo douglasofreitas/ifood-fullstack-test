@@ -41,7 +41,7 @@ public class OrderApplicationTests {
 				));
 
 		for (Order order : orderRepository.findAll()) {
-			log.info("Found Order {}", order.toString());
+			//log.info("Found Order {}", order.toString());
 		}
 	}
 

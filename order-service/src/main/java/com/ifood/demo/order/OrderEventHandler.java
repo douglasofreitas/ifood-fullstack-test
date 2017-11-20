@@ -13,16 +13,16 @@ public class OrderEventHandler {
 
 	@HandleAfterCreate
 	public void handleOrderCreate(Order c) {
-		log.info("handleOrderCreate: {}", c.getId());
+		//log.info("handleOrderCreate: {}", c.getId());
 	}
 
 	@HandleAfterSave
 	public void handleOrderSave(Order c) {
-		log.info("handleOrderSave: {}", c.getId());
+		//log.info("handleOrderSave: {}", c.getId());
 	}
 
 	@HandleAfterDelete
 	public void handleOrderDelete(Order c) {
-		log.info("handleOrderDelete: {}", c.getId());
+		//log.info("handleOrderDelete: {}", c.getId());
 	}
 }

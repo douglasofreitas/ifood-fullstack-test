@@ -9,6 +9,7 @@ import com.ifood.demo.client.ClientEventHandler;
 
 @SpringBootApplication
 @EnableJpaRepositories("com.ifood.demo")
+
 public class ClientApplication {
 	
 	public static void main(String[] args) {

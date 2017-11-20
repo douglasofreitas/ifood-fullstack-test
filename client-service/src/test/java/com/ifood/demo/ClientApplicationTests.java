@@ -27,11 +27,11 @@ public class ClientApplicationTests {
 		clientRepository.save(new Client("Billy Bob", "billy@bob.com", "11112345"));
 
 		for (Client client : clientRepository.findAll()) {
-			log.info("Hello {}", client.toString());
+			//log.info("Hello {}", client.toString());
 		}
 		
 		for (Client client : clientRepository.findByNameIgnoreCaseContaining("doe")) {
-			log.info("Hello 'Doe' {}", client.toString());		
+			//log.info("Hello 'Doe' {}", client.toString());		
 		}
 
 	}

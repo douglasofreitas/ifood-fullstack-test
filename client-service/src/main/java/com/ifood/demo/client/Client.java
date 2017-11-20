@@ -20,6 +20,40 @@ public class Client {
 	private final String phone;
 
 	protected Client() {
-		this(null, null, null);
+		this.name = null;
+		this.email = null;
+		this.phone = null;
 	}
+	
+	public Client(String name, String email, String phone) {
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+	}
+	
+	public String toString() {
+		return this.name+"-"+this.email+"-"+this.phone;
+		
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+	
 }

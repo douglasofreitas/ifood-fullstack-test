@@ -13,16 +13,16 @@ public class ClientEventHandler {
 
 	@HandleAfterCreate
 	public void handleClientCreate(Client c) {
-		log.info("handleClientCreate: {}", c.getId());
+		//log.info("handleClientCreate: {}", c.getId());
 	}
 	
 	@HandleAfterSave
 	public void handleClientSave(Client c) {
-		log.info("handleClientSave: {}", c.getId());
+		//log.info("handleClientSave: {}", c.getId());
 	}
 	
 	@HandleAfterDelete
 	public void handleClientDelete(Client c) {
-		log.info("handleClientDelete: {}", c.getId());
+		//log.info("handleClientDelete: {}", c.getId());
 	}
 }
