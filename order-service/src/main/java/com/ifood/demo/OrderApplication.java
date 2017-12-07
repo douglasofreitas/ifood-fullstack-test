@@ -28,7 +28,7 @@ public class OrderApplication {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/").allowedOrigins("http://localhost:4200");
+                registry.addMapping("/v1/orders").allowedOrigins("http://localhost:4200");
             }
         };
     }

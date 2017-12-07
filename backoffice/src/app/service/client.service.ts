@@ -4,8 +4,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Order } from '../model/order';
-import { Item } from '../model/item';
+import { Client } from '../model/client';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -16,40 +15,29 @@ const httpOptions = {
 };
 
 @Injectable()
-export class OrderService {
+export class ClientService {
 
-  private ordersUrl = 'http://localhost:8082/v1/orders';  // URL to web api
+  private clientsUrl = 'http://localhost:8081/v1/clients';  // URL to web api
   
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    ) { }
   
-  getOrders() {
+  getClients() {
 
-    return this.http.get<Order[]>(this.ordersUrl, httpOptions)
+    return this.http.get<Client[]>(this.clientsUrl, httpOptions)
       .pipe(
         tap(result => {
-          this.log(`fetched orders`, result);
+          this.log(`fetched clients`, result);
         }),
-        catchError(this.handleError('getOrders', []))
+        catchError(this.handleError('getClients', []))
       );
 
   }
 
-  /* GET orders whose name contains search term */
-  searchHeroes(term: string): Observable<Order[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<Order[]>(`${this.ordersUrl}/?name=${term}`).pipe(
-      tap(result => this.log(`found orders matching "${term}"`, result)),
-      catchError(this.handleError<Order[]>('searchOrders', []))
-    );
-  }
-
   /** Log a HeroService message with the MessageService */
   private log(message: string, obj: object) {
-    console.log('OrderService: ' + message);
+    console.log('ClientService: ' + message);
     console.log(obj);
   }
 

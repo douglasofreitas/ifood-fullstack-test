@@ -10,6 +10,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 import { OrderService } from './service/order.service';
+import { ClientService } from './service/client.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { OrderService } from './service/order.service';
     HttpClientModule,
     JsonpModule
   ],
-  providers: [OrderService],
+  providers: [OrderService, ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

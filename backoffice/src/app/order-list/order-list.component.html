@@ -7,12 +7,12 @@
       <th>E-mail</th>
       <th>Total value</th>
     </tr>
-    <tr *ngFor="let order of orders">
-      <th>{{order.createdAt}}</th>
-      <th>Client Name</th>
-      <th>Phone</th>
-      <th>E-mail</th>
-      <th>Total value</th>
+    <tr *ngFor="let order of ordersArray">
+      <th>{{order.createdAt | date: 'dd/MM/yyyy'}}</th>
+      <th>{{clients.get(order.clientId).name}}</th>
+      <th>{{clients.get(order.clientId).phone}}</th>
+      <th>{{clients.get(order.clientId).email}}</th>
+      <th>{{orderValue(order)}}</th>
     </tr>
   </table>
 </div>

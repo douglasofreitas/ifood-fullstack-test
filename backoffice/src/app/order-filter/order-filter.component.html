@@ -1,17 +1,31 @@
 <div class="order-filter">
-  <h1>Hero Form</h1>
   <form>
     <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name">
+      <label for="orderStartDate">Start date</label>
+      <input type="text" class="form-control" id="orderStartDate">
     </div>
 
     <div class="form-group">
-      <label for="alterEgo">Alter Ego</label>
-      <input type="text" class="form-control" id="alterEgo">
+      <label for="orderEndDate">End date</label>
+      <input type="text" class="form-control" id="orderEndDate">
+    </div>
+
+    <div class="form-group">
+      <label for="clientName">Client Name</label>
+      <input type="text" class="form-control" id="clientName">
+    </div>
+
+    <div class="form-group">
+      <label for="clientPhone">Phone</label>
+      <input type="text" class="form-control" id="clientPhone">
+    </div>
+
+    <div class="form-group">
+      <label for="clientEmail">E-mail</label>
+      <input type="text" class="form-control" id="clientEmail">
     </div>
 
     <button class="btn btn-success" title="Filter"
-      (click)="search(hero)">Filter</button>
+      (click)="search(order)">Filter</button>
   </form>
 </div>
