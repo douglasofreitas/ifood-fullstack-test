@@ -5,6 +5,7 @@ import { Item } from '../model/item';
 import { Client } from '../model/client';
 import { OrderService } from '../service/order.service';
 import { ClientService } from '../service/client.service';
+import { ModalService } from '../service/modal.service';
 
 @Component({
   selector: 'app-order-list',
@@ -17,12 +18,19 @@ export class OrderListComponent implements OnInit {
   ordersArray: Array<Order>;
   clients: Map<string, Client>;
   clientsArray: Array<Client>;
+  orderDetail: Order;
 
-  constructor(private orderService: OrderService, private clientService: ClientService) { 
+  constructor(private orderService: OrderService, 
+    private clientService: ClientService,
+    private modalService: ModalService) { 
+
     this.orders = new Map();
     this.ordersArray = [];
     this.clients = new Map();
     this.clientsArray = [];
+    this.orderDetail = new Order(
+      '','','',new Date(),new Date(),[]
+    );
   }
 
   getClients(): void {
@@ -88,6 +96,19 @@ export class OrderListComponent implements OnInit {
       total += item.quantity*item.price;
     });
     return total;
+  }
+
+  showDetail(id: string){
+    console.log('showDetail', id);
+    this.orderDetail = this.orders.get(id);
+  }
+
+  openModal(id: string){
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string){
+    this.modalService.close(id);
   }
 
   ngOnInit() {

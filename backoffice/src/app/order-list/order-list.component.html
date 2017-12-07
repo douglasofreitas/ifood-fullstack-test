@@ -1,3 +1,4 @@
+<app-order-filter></app-order-filter>
 <div class="order-list">
   <table>
     <tr>
@@ -5,7 +6,8 @@
       <th>Client Name</th>
       <th>Phone</th>
       <th>E-mail</th>
-      <th>Total value</th>
+      <th>Total</th>
+      <th>Details</th>
     </tr>
     <tr *ngFor="let order of ordersArray">
       <th>{{order.createdAt | date: 'dd/MM/yyyy'}}</th>
@@ -13,6 +15,49 @@
       <th>{{clients.get(order.clientId).phone}}</th>
       <th>{{clients.get(order.clientId).email}}</th>
       <th>{{orderValue(order)}}</th>
+      <button (click)="showDetail(order.id)" onclick="$('#order-detail').modal('show')" >Detail</button> 
     </tr>
   </table>
 </div>
+
+<!-- Modal -->
+<div id="order-detail" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Order Detail</h4>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="orderDetail.id !== '';" > 
+          <p>Client name: {{clients.get(orderDetail.clientId).name}}</p>
+          <p>E-mail: {{clients.get(orderDetail.clientId).email}}</p>
+          <p>Phone: {{clients.get(orderDetail.clientId).phone}}</p>
+          <p>Date: {{orderDetail.createdAt | date: 'dd/MM/yyyy'}}</p>
+          <p>Itens</p>
+          <table>
+            <tr>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+            <tr *ngFor="let item of orderDetail.items">
+              <th>{{item.description}}</th>
+              <th>{{item.quantity}}</th>
+              <th>{{item.price}}</th>
+              <th>{{item.price*item.quantity}}</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
