@@ -19,6 +19,7 @@ export class OrderListComponent implements OnInit {
   clients: Map<string, Client>;
   clientsArray: Array<Client>;
   orderDetail: Order;
+  orderFilter: Object;
 
   constructor(private orderService: OrderService, 
     private clientService: ClientService,
@@ -31,6 +32,10 @@ export class OrderListComponent implements OnInit {
     this.orderDetail = new Order(
       '','','',new Date(),new Date(),[]
     );
+    this.orderFilter = {};
+
+    this.orderService.orderListComponent = this;
+    
   }
 
   getClients(): void {
@@ -52,15 +57,19 @@ export class OrderListComponent implements OnInit {
           this.clientsArray.push(newClient);
 
         });
-        this.getOrders();
+        this.getOrdersList();
       });
   }
 
-  getOrders(): void {
+  getOrdersList(): void {
+    console.log('this.getOrders - this.orderFilter', this.orderFilter);
+    this.orders = new Map();
+    this.ordersArray = [];
     this.orderService.getOrders()
       .subscribe(result => {
         result['_embedded'].orders.forEach((order, index) => {
           let itens = [];
+          let insertOrderList = true;
           order.items.forEach((orderItem, indexItem) => {
             console.log('orderItem', orderItem);
             itens.push(new Item(
@@ -80,14 +89,49 @@ export class OrderListComponent implements OnInit {
             itens,
           );
 
-          this.orders.set(orderId, newOrder);
-          this.ordersArray.push(newOrder);
+          //check if order enter in list
+          if(this.orderFilter.hasOwnProperty('client_name')){
+            if(this.clients.get(order.clientId).name.indexOf(this.orderFilter['client_name']) < 0) {
+              insertOrderList = false;
+            }
+          }
+          if(this.orderFilter.hasOwnProperty('client_phone')){
+            if(this.clients.get(order.clientId).phone.indexOf(this.orderFilter['client_phone']) < 0) {
+              insertOrderList = false;
+            }
+          }
+          if(this.orderFilter.hasOwnProperty('client_email')){
+            if(this.clients.get(order.clientId).email.indexOf(this.orderFilter['client_email']) < 0) {
+              insertOrderList = false;
+            }
+          }
+          if(this.orderFilter.hasOwnProperty('start_date')){
+            console.log(new Date(this.orderFilter['start_date']), new Date(order['createdAt']));
+            if(new Date(this.orderFilter['start_date']) > new Date(order['createdAt'])) {
+              insertOrderList = false;
+            }
+          }
+          if(this.orderFilter.hasOwnProperty('end_date')){
+            if(new Date(this.orderFilter['end_date']) < new Date(order['createdAt'])) {
+              insertOrderList = false;
+            }
+          }
 
+          if(insertOrderList){
+            this.orders.set(orderId, newOrder);
+            this.ordersArray.push(newOrder);
+          }
         });
         console.log('this.orders', this.orders);
         console.log('this.ordersArray', this.ordersArray);
       });
-      
+  }
+
+  refreshOrders(){
+    console.log('refreshOrders...start');
+    this.orderFilter = this.orderService.getOrderFilter();
+    this.getOrdersList();
+    console.log('refreshOrders...end');
   }
 
   orderValue(order: Order){

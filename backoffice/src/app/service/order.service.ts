@@ -19,12 +19,14 @@ const httpOptions = {
 export class OrderService {
 
   private ordersUrl = 'http://localhost:8082/v1/orders';  // URL to web api
-  
+  private orderFilter = {};
+  public orderListComponent: Object;
+
   constructor(
     private http: HttpClient) { }
   
   getOrders() {
-
+    console.log('OrderService - this.getOrders');
     return this.http.get<Order[]>(this.ordersUrl, httpOptions)
       .pipe(
         tap(result => {
@@ -32,7 +34,15 @@ export class OrderService {
         }),
         catchError(this.handleError('getOrders', []))
       );
+  }
 
+  setOrderFilter(orderFilter){
+    this.orderFilter = orderFilter;
+    this.orderListComponent['refreshOrders']();
+  }
+
+  getOrderFilter(){
+    return this.orderFilter;
   }
 
   /* GET orders whose name contains search term */
