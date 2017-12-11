@@ -1,30 +1,52 @@
-<div class="order-filter">
+<div class="order-filter" style="margin-bottom: 30px;">
   <form>
-    <div class="form-group">
-      <label for="orderStartDate">Start date</label>
-      <input type="text" class="form-control" id="orderStartDate" >
-    </div>
-
-    <div class="form-group">
-      <label for="orderEndDate">End date</label>
-      <input type="text" class="form-control" id="orderEndDate">
-    </div>
-
-    <div class="form-group">
-      <label for="clientName">Client Name</label>
-      <input type="text" class="form-control" id="clientName">
-    </div>
-
-    <div class="form-group">
-      <label for="clientPhone">Phone</label>
-      <input type="text" class="form-control" id="clientPhone">
-    </div>
-
-    <div class="form-group">
-      <label for="clientEmail">E-mail</label>
-      <input type="text" class="form-control" id="clientEmail">
-    </div>
-
+    <table>
+      <tr>
+        <td>
+            <div class="form-group row">
+              <label for="orderStartDate" class="col-sm-2 col-form-label">Start date</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="orderStartDate" >
+              </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+              <label for="orderEndDate" class="col-sm-2 col-form-label">End date</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="orderEndDate">
+              </div>
+            </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+            <div class="form-group row">
+              <label for="clientName" class="col-sm-2 col-form-label">Client Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="clientName">
+              </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+              <label for="clientPhone" class="col-sm-2 col-form-label">Phone</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="clientPhone">
+              </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+              <label for="clientEmail" class="col-sm-2 col-form-label">E-mail</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="clientEmail">
+              </div>
+            </div>
+        </td>
+      </tr>
+    </table>
+    
     <button class="btn btn-success" title="Filter"
       (click)="searchForm()">Filter</button>
   </form>

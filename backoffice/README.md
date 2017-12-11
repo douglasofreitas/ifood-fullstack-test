@@ -1,5 +1,18 @@
 # Backoffice
 
+Execute Order and Client API and after run the Backoffce.
+At the moment is necessary enacle CORs in browser with some Extension.
+
+Main function:
+- Filter orders by date and client data
+- Show details with Modal 
+
+Evolutions:
+- Enable CORs automaticaly 
+
+
+# Backoffice - Runing
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
 
 ## Development server
